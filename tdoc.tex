@@ -1,9 +1,25 @@
 \documentclass[11pt]{report}
 \usepackage{tdoc}
-
+\usepackage{draftwatermark}
+\SetWatermarkText{draft}
+\SetWatermarkScale{10}
 \title{A git Tutorial}
+\author{Matt Carvalho, Matt Gambogi, Rob Glossop}
 
 \begin{document}
+
+% disable page numbering for titlepage
+\thispagestyle{empty}
 \maketitle
+
+% restart page numbering in roman numerals for toc/figs
+\clearpage \pagenumbering{roman} 
+
 \tableofcontents
+
+\listoffigures
+
+% restart page numbering again for main body
+\clearpage \pagenumbering{arabic}
+
 \end{document}
