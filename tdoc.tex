@@ -24,7 +24,6 @@
 % restart page numbering again for main body
 \clearpage \pagenumbering{arabic}
 \section{Intro}
-
 This tutorial will introduce git, a version control system. We will
 introduce the basics of using git in a multi-person project: how to
 track your work and sync it with other team members. We'll start with
@@ -34,19 +33,26 @@ multi-person git project.
 
 %multi-user tutorial
 \section{Multi-user}
-
 In this section you will be doing a demo of how to get code from someone else's project and make changes to it on git. If you are working on a project with a group or you want to make a contribution to an open source project you may find some of these commands useful.
-\\ First you would cd to the directory that you want to put the project folder into. For this demo you can just clone it to your home directory.
-\\ Now type git clone [url of project] to download all the files of that project to your computer.
-\\ If you make a change and push it now you will be making changes to the master branch
-\\ Create a new branch by typing git branch [new_branch_name]
-\\ You can verify that the branch was created with git branch
-\\ And switch to this branch with git checkout [new_branch_name]
-\\ Make a change to a file, add it, and commit it.
-\\ git add [filename]
-\\ git commit -m "[commit message]"
-\\ You just committed the changes to your local branch. You can push this branch to the repository with git push -u origin [new_branch_name]
+First you would cd to the directory that you want to put the project folder into.
+For this demo you can just clone it to your home directory.
+Now type \texttt{git clone \string[url of project\string]} to download all the files of that project to your computer.
+If you make a change and push it now you will be making changes to the master branch
+Create a new branch by typing \texttt{git branch \string[new\string_branch\string_name\string]}
+You can verify that the branch was created with \texttt{git branch}
+And switch to this branch with \texttt{git checkout \string[new\string_branch\string_name\string]}
+Make a change to a file, add it, and commit it.
+\texttt{git add \string[filename\string]}
+\texttt{git commit -m "commit message"}
+You just committed the changes to your local branch.
+You can push this branch to the repository with \texttt{git push -u origin \string[new\string_branch\string_name\string]}
 
 
 
+\begin{thebibliography}{9}
+
+\bibitem{gitscm}
+    Git. (n.d.). Retrieved \today, from http://www.git-scm.com/
+
+\end{thebibliography}
 \end{document}
