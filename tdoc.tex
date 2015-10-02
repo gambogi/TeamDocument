@@ -32,4 +32,21 @@ the basics of how to create a repository and commit your own work into
 it, then move on to merging, branches and other issues involved with a
 multi-person git project.
 
+%multi-user tutorial
+\section{Multi-user}
+
+In this section you will be doing a demo of how to get code from someone else's project and make changes to it on git. If you are working on a project with a group or you want to make a contribution to an open source project you may find some of these commands useful.
+\\ First you would cd to the directory that you want to put the project folder into. For this demo you can just clone it to your home directory.
+\\ Now type git clone [url of project] to download all the files of that project to your computer.
+\\ If you make a change and push it now you will be making changes to the master branch
+\\ Create a new branch by typing git branch [new_branch_name]
+\\ You can verify that the branch was created with git branch
+\\ And switch to this branch with git checkout [new_branch_name]
+\\ Make a change to a file, add it, and commit it.
+\\ git add [filename]
+\\ git commit -m "[commit message]"
+\\ You just committed the changes to your local branch. You can push this branch to the repository with git push -u origin [new_branch_name]
+
+
+
 \end{document}
