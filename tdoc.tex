@@ -1,5 +1,8 @@
 \documentclass[11pt]{report}
 \usepackage{tdoc}
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
 \usepackage{draftwatermark}
 \SetWatermarkText{draft}
 \SetWatermarkScale{10}
@@ -31,8 +34,23 @@ the basics of how to create a repository and commit your own work into
 it, then move on to merging, branches and other issues involved with a
 multi-person git project.
 
+\section{A Note on Notation}
+Code snippets and commands will be formatted in a \texttt{monospace} font or in
+a separate figure.
+
+Here is an example of a separate figure:
+\begin{figure}[h]
+    \caption{Example Command Snippet}
+    \begin{lstlisting}
+    user@host ~ example_command
+    \end{lstlisting}
+\end{figure}
+
+\chapter{Single User \texttt{git}}
+ Empty content
+
 %multi-user tutorial
-\section{Multi-user}
+\chapter{Multi-user}
 In this section you will be doing a demo of how to get code from someone else's project and make changes to it on git. If you are working on a project with a group or you want to make a contribution to an open source project you may find some of these commands useful.
 First you would cd to the directory that you want to put the project folder into.
 For this demo you can just clone it to your home directory.
@@ -46,7 +64,6 @@ Make a change to a file, add it, and commit it.
 \texttt{git commit -m "commit message"}
 You just committed the changes to your local branch.
 You can push this branch to the repository with \texttt{git push -u origin \string[new\string_branch\string_name\string]}
-
 
 
 \begin{thebibliography}{9}
