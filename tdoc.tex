@@ -43,7 +43,7 @@ or another machine with git installed.
 \section{A Note on Notation}
 Code snippets and commands will be formatted in a \texttt{monospace} font or in
 a separate figure. Placeholders are indicated with \texttt{[square
-    braces]}. Commands will have a \texttt{\$} prefix, while output
+    braces]}. Commands will have a \texttt{>} prefix, while output
 will have nothing.
 \begin{figure}[h]
   \caption{Example Command Snippet}
@@ -86,16 +86,38 @@ Once you've logged in, verify that git is installed:
 
 Let's create a repo. First, create a directory:
 \begin{figure}[H]
-  \caption{ssh into the CS Machines}
   \begin{lstlisting}
     > mkdir example_git
+  \end{lstlisting}
+\end{figure}
+
+Great! Let's initalize a git repository in this folder:
+\begin{figure}[H]
+  \caption{Initializing a Repo}
+  \begin{lstlisting}
+    > cd example_git
+    > git init
+    Initialized empty Git repository in /path/to/example_git/.git
+  \end{lstlisting}
+\end{figure}
+
+Now let's create a file and commit it:
+\begin{figure}[H]
+  \caption{Making your first commit}
+  \begin{lstlisting}
+    > touch README
+    > git add README
+    > git commit -m "Initial commit"
+    [master (root-commit) fffffff] Initial commit
+     1 file changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 README
   \end{lstlisting}
 \end{figure}
 
 
 
 %multi-user tutorial
-\chapter{Multi-user}
+\chapter{Multi-user \texttt{git}}
 In this section you will be doing a demo of how to get code from
 someone else's project and make changes to it on git. If you are
 working on a project with a group or you want to make a contribution
