@@ -110,9 +110,45 @@ Now let's create a file and commit it:
 
 Let's break down that output. \texttt{master}, refers to the name of the branch
 we just committed to. \texttt{(root-commit)} indicates this was the first commit
-in the repository. \texttt{ffffff} (or a similar 7 digit hex value) is the
-hash of the dir
+in the repository. \texttt{ffffff} (or similarly positioned hex value) is the
+hash of the files in the repository. \texttt{Initial commit} is the title of your
+commit message. These messages should be short, and capture the essence of what
+changed between this commit and the last. \texttt{1 file changed, 0 insertions(+),
+0 deletions(-)} is just metadata describing what happened. Similarly, the last line
+just denotes that \texttt{README} is now being tracked by git.
 
+This output probably raises the question: what is a branch?
+If a series of commits forms a linear picture of the history of changes,
+branches are divergent histories of change. Git easily allows for the creation of
+branches and provides tools for unifying them.
+
+To see a list of branches try typing 
+\begin{figure}[H]
+  \caption{Example branch listing}
+  \begin{lstlisting}
+  > git branch
+  * master
+  \end{lstlisting}
+ \end{figure}
+
+Let's create a branch:
+\begin{figure}[H]
+  \caption{Example branch creation}
+  \begin{lstlisting}
+  > git checkout -b twig
+  Switched to a new branch 'twig'
+  \end{lstlisting}
+\end{figure}
+
+Now if we run \texttt{git branch} again, we should see a list of
+branches. This should be just \texttt{master} and \texttt{twig}.
+The name \texttt{twig} is just an example, branches may be called
+whatever the user desires. A \texttt{checkout} switches your working
+directory to that of the target branch. Try editing the \texttt{README}
+and committing it. Then switch branches and check again.
+
+Now let's say you want to get the changes made in a branch into some other
+branch. You'll need to perform what is known in the git world as a merge.
 
 %multi-user tutorial
 \chapter{Multi-user \texttt{git}}
@@ -129,7 +165,6 @@ directory.  Now type
     > git clone [url of project]
   \end{lstlisting}
 \end{figure}
-
 
 to download all the files of that project to your computer.  If you
 make a change and push it now you will be making changes to the master
