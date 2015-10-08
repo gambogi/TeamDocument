@@ -45,7 +45,7 @@ installed.
 \section{A Note on Notation}
 Code snippets and commands will be formatted in a \texttt{monospace} font or in
 a separate figure. Placeholders are indicated with \texttt{[square
-    braces]}. Commands will have a \texttt{\$} prefix, while output
+    braces]}. Commands will have a \texttt{>} prefix, while output
 will have nothing.
 \begin{figure}[H]
   \caption{Example Command Snippet}
@@ -57,11 +57,13 @@ will have nothing.
 
 \chapter{Single User \texttt{git}}
 Git is well known as a distributed version control system but it is
-firstly an excellent single user version control system.
-
+firstly an excellent single user version control system. 
 Git tracks changes to collections of files known together as a repository.
 When a change is made to the files in the repository, and a user would like
-to save those changes, they "commit" them for later. Since you are a CS student,
+to save those changes, they "commit" them for later.
+
+\section{Trying git}
+Since you are a CS student,
 you have access to the CS machines, so you should be able to sign in to any and
 try these examples.
 
@@ -75,89 +77,156 @@ try these examples.
 
 Once you've logged in, verify that git is installed:
 
-\begin{figure}[H]
-  \lstinputlisting{git_help.txt}
-\end{figure}
+\begin{figure}[H]\lstinputlisting{git_help.txt}\end{figure}
+\begin{figure}[H]\caption{Verify installation}\lstinputlisting{git_help_2.txt}\end{figure}
 
-\begin{figure}[H]
-  \caption{verify}
-  \lstinputlisting{git_help_2.txt}
-\end{figure}
-
-\section{Committing}
-
-Git is used in the context of a \emph{repository}, a collection of
-files you want to track. To create a repository, go to the directory
-with your files and run
-
+Let's create a repo. First, create a directory:
 \begin{figure}[H]
   \begin{lstlisting}
+    > mkdir example_git
+  \end{lstlisting}
+\end{figure}
+
+Great! Let's initalize a git repository in this folder:
+\begin{figure}[H]
+  \caption{Initializing a Repo}
+  \begin{lstlisting}
+    > cd example_git
     > git init
-    Initialized empty git repository in
-    /home/robert/profcomm/team-document/.git
+    Initialized empty Git repository in /path/to/example_git/.git
   \end{lstlisting}
 \end{figure}
 
-The repository is ready to use, but it doesn't have any files in it
-yet. To add files, run
-
+Now let's create a file and commit it:
 \begin{figure}[H]
+  \caption{Making your first commit}
   \begin{lstlisting}
-    > git add homework1.c
+    > touch README
+    > git add README
+    > git commit -m "Initial commit"
+    [master (root-commit) fffffff] Initial commit
+     1 file changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 README
   \end{lstlisting}
 \end{figure}
 
-TODO GIT STATUS MENTION
+%% <<<<<<< HEAD
+%% \section{Committing}
 
-Your file isn't tracked yet: it's in the \emph{index}, git's staging
-area. From here, \texttt{git commit} will package all the files in the
-index into a commit.
+%% Git is used in the context of a \emph{repository}, a collection of
+%% files you want to track. To create a repository, go to the directory
+%% with your files and run
 
+%% \begin{figure}[H]
+%%   \begin{lstlisting}
+%%     > git init
+%%     Initialized empty git repository in
+%%     /home/robert/profcomm/team-document/.git
+%%   \end{lstlisting}
+%% \end{figure}
+
+%% The repository is ready to use, but it doesn't have any files in it
+%% yet. To add files, run
+
+%% \begin{figure}[H]
+%%   \begin{lstlisting}
+%%     > git add homework1.c
+%%   \end{lstlisting}
+%% \end{figure}
+
+%% TODO GIT STATUS MENTION
+
+%% Your file isn't tracked yet: it's in the \emph{index}, git's staging
+%% area. From here, \texttt{git commit} will package all the files in the
+%% index into a commit.
+
+%% \begin{figure}[H]
+%%   \begin{lstlisting}
+%%     > git commit -m "Fixed diagonal line drawing"
+%%     [master cb8a72a] Fixed diagonal line drawing
+%%      1 file changed, 95 insertions(+), 22 deletions(-)
+%%   \end{lstlisting}
+%% \end{figure}
+
+%% \section{History}
+
+%% Git commits are organized into a history: each commit has a parent,
+%% leading back to the beginning of the repository. You can view the
+%% history with \texttt{git log}:
+
+%% \begin{figure}[H]
+%%   \begin{lstlisting}
+%%     > git log
+%%     commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
+%%     Author: Robert Glossop <robgssp@gmail.com>
+%%     Date:   Wed Oct 7 22:40:40 2015 -0400
+    
+%%         split up help
+    
+%%     commit 9c8d30d2c5b73b63aa6d3401519218d5b38b8379
+%%     Author: Matt Gambogi <m@gambogi.com>
+%%     Date:   Wed Oct 7 22:31:27 2015 -0400
+    
+%%         added a few things
+    
+%%     commit 7351c1145cb10280101ef13e6225914b5789dd7f
+%%     Author: Matt Gambogi <m@gambogi.com>
+%%     Date:   Wed Oct 7 22:09:08 2015 -0400
+    
+%%         took a book off a hook out of math mode
+
+%%     ...
+%%   \end{lstlisting}
+%% \end{figure}
+
+%% Notice the long string above each commit: this is a \emph{commit
+%%   hash}, which is generated from the commit's contents and used by git
+%% command to uniquely identify commits.
+%% =======
+Let's break down that output. \texttt{master}, refers to the name of the branch
+we just committed to. \texttt{(root-commit)} indicates this was the first commit
+in the repository. \texttt{ffffff} (or similarly positioned hex value) is the
+hash of the ppfiles in the repository. \texttt{Initial commit} is the title of your
+commit message. These messages should be short, and capture the essence of what
+changed between this commit and the last. \texttt{1 file changed, 0 insertions(+),
+0 deletions(-)} is just metadata describing what happened. Similarly, the last line
+just denotes that \texttt{README} is now being tracked by git.
+
+This output probably raises the question: what is a branch?
+If a series of commits forms a linear picture of the history of changes,
+branches are divergent histories of change. Git easily allows for the creation of
+branches and provides tools for unifying them.
+
+To see a list of branches try typing 
 \begin{figure}[H]
+  \caption{Example branch listing}
   \begin{lstlisting}
-    > git commit -m "Fixed diagonal line drawing"
-    [master cb8a72a] Fixed diagonal line drawing
-     1 file changed, 95 insertions(+), 22 deletions(-)
+  > git branch
+  * master
   \end{lstlisting}
-\end{figure}
+ \end{figure}
 
-\section{History}
-
-Git commits are organized into a history: each commit has a parent,
-leading back to the beginning of the repository. You can view the
-history with \texttt{git log}:
-
+Let's create a branch:
 \begin{figure}[H]
+  \caption{Example branch creation}
   \begin{lstlisting}
-    > git log
-    commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
-    Author: Robert Glossop <robgssp@gmail.com>
-    Date:   Wed Oct 7 22:40:40 2015 -0400
-    
-        split up help
-    
-    commit 9c8d30d2c5b73b63aa6d3401519218d5b38b8379
-    Author: Matt Gambogi <m@gambogi.com>
-    Date:   Wed Oct 7 22:31:27 2015 -0400
-    
-        added a few things
-    
-    commit 7351c1145cb10280101ef13e6225914b5789dd7f
-    Author: Matt Gambogi <m@gambogi.com>
-    Date:   Wed Oct 7 22:09:08 2015 -0400
-    
-        took a book off a hook out of math mode
-
-    ...
+  > git checkout -b twig
+  Switched to a new branch 'twig'
   \end{lstlisting}
 \end{figure}
 
-Notice the long string above each commit: this is a \emph{commit
-  hash}, which is generated from the commit's contents and used by git
-command to uniquely identify commits.
+Now if we run \texttt{git branch} again, we should see a list of
+branches. This should be just \texttt{master} and \texttt{twig}.
+The name \texttt{twig} is just an example, branches may be called
+whatever the user desires. A \texttt{checkout} switches your working
+directory to that of the target branch. Try editing the \texttt{README}
+and committing it. Then switch branches and check again.
+
+Now let's say you want to get the changes made in a branch into some other
+branch. You'll need to perform what is known in the git world as a merge.
 
 %multi-user tutorial
-\chapter{Multi-user}
+\chapter{Multi-user \texttt{git}}
 In this section you will be doing a demo of how to get code from
 someone else's project and make changes to it on git. If you are
 working on a project with a group or you want to make a contribution
@@ -291,11 +360,11 @@ to resolve the errors. The offending files will be marked with
 
 \begin{figure}[H]
   \begin{lstlisting}
-    >>>>>>>>>>
+    <<<<<<<<<<
     one file's changes
     ==========
     other file's changes
-    <<<<<<<<<<
+    >>>>>>>>>>
   \end{lstlisting}
 \end{figure}
 
