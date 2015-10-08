@@ -110,92 +110,25 @@ Now let's create a file and commit it:
   \end{lstlisting}
 \end{figure}
 
-%% <<<<<<< HEAD
-%% \section{Committing}
+Let's break down these commands. First we \texttt{git add} a file,
+which puts it in the \emph{index}. \texttt{git commit} packages the
+files in the index into a commit, which is given a message.
 
-%% Git is used in the context of a \emph{repository}, a collection of
-%% files you want to track. To create a repository, go to the directory
-%% with your files and run
+The output of \texttt{git commit} also bears looking
+at. \texttt{master} refers to the name of the branch we just committed
+to. \texttt{(root-commit)} indicates this was the first commit in the
+repository. \texttt{ffffff} (or similarly positioned hex value) is the
+hash of the ppfiles in the repository. \texttt{Initial commit} is the
+title of your commit message. These messages should be short, and
+capture the essence of what changed between this commit and the
+last. \texttt{1 file changed, 0 insertions(+), 0 deletions(-)} is just
+metadata describing what happened. Similarly, the last line just
+denotes that \texttt{README} is now being tracked by git.
 
-%% \begin{figure}[H]
-%%   \begin{lstlisting}
-%%     > git init
-%%     Initialized empty git repository in
-%%     /home/robert/profcomm/team-document/.git
-%%   \end{lstlisting}
-%% \end{figure}
-
-%% The repository is ready to use, but it doesn't have any files in it
-%% yet. To add files, run
-
-%% \begin{figure}[H]
-%%   \begin{lstlisting}
-%%     > git add homework1.c
-%%   \end{lstlisting}
-%% \end{figure}
-
-%% TODO GIT STATUS MENTION
-
-%% Your file isn't tracked yet: it's in the \emph{index}, git's staging
-%% area. From here, \texttt{git commit} will package all the files in the
-%% index into a commit.
-
-%% \begin{figure}[H]
-%%   \begin{lstlisting}
-%%     > git commit -m "Fixed diagonal line drawing"
-%%     [master cb8a72a] Fixed diagonal line drawing
-%%      1 file changed, 95 insertions(+), 22 deletions(-)
-%%   \end{lstlisting}
-%% \end{figure}
-
-%% \section{History}
-
-%% Git commits are organized into a history: each commit has a parent,
-%% leading back to the beginning of the repository. You can view the
-%% history with \texttt{git log}:
-
-%% \begin{figure}[H]
-%%   \begin{lstlisting}
-%%     > git log
-%%     commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
-%%     Author: Robert Glossop <robgssp@gmail.com>
-%%     Date:   Wed Oct 7 22:40:40 2015 -0400
-    
-%%         split up help
-    
-%%     commit 9c8d30d2c5b73b63aa6d3401519218d5b38b8379
-%%     Author: Matt Gambogi <m@gambogi.com>
-%%     Date:   Wed Oct 7 22:31:27 2015 -0400
-    
-%%         added a few things
-    
-%%     commit 7351c1145cb10280101ef13e6225914b5789dd7f
-%%     Author: Matt Gambogi <m@gambogi.com>
-%%     Date:   Wed Oct 7 22:09:08 2015 -0400
-    
-%%         took a book off a hook out of math mode
-
-%%     ...
-%%   \end{lstlisting}
-%% \end{figure}
-
-%% Notice the long string above each commit: this is a \emph{commit
-%%   hash}, which is generated from the commit's contents and used by git
-%% command to uniquely identify commits.
-%% =======
-Let's break down that output. \texttt{master}, refers to the name of the branch
-we just committed to. \texttt{(root-commit)} indicates this was the first commit
-in the repository. \texttt{ffffff} (or similarly positioned hex value) is the
-hash of the ppfiles in the repository. \texttt{Initial commit} is the title of your
-commit message. These messages should be short, and capture the essence of what
-changed between this commit and the last. \texttt{1 file changed, 0 insertions(+),
-0 deletions(-)} is just metadata describing what happened. Similarly, the last line
-just denotes that \texttt{README} is now being tracked by git.
-
-This output probably raises the question: what is a branch?
-If a series of commits forms a linear picture of the history of changes,
-branches are divergent histories of change. Git easily allows for the creation of
-branches and provides tools for unifying them.
+This output probably raises the question: what is a branch?  If a
+series of commits forms a linear picture of the history of changes,
+branches are divergent histories of change. Git easily allows for the
+creation of branches and provides tools for unifying them.
 
 To see a list of branches try typing 
 \begin{figure}[H]
@@ -223,7 +156,122 @@ directory to that of the target branch. Try editing the \texttt{README}
 and committing it. Then switch branches and check again.
 
 Now let's say you want to get the changes made in a branch into some other
-branch. You'll need to perform what is known in the git world as a merge.
+branch. You'll need to perform what is known in the git world as a
+merge.
+
+\section{Merging}
+
+Once you've worked on a branch for awhile, you'll want to merge it
+back to the master branch. Switch back to master then run
+\texttt{git merge}:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git checkout master
+    Switched to branch 'master'
+    > git merge twig
+  \end{lstlisting}
+\end{figure}
+
+From here, a few things can happen. If there haven't been any changes
+on master, the merge will simply fast-forward and complete, and the
+history won't show a branch at all.
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    git merge twig
+    Updating ed7c16f..b80a9ee
+    Fast-forward
+     README | 163 +++++++++++++++++++++++++++++++++++------
+     1 file changed, 141 insertions(+), 22 deletions(-)
+  \end{lstlisting}
+\end{figure}
+
+If there were changes in master but they don't overlap, you won't have
+to resolve merge conflicts but git will prompt you to create a merge
+commit:
+
+TODO EXAMPLE HERE
+
+This commit will be created with two parents, one for each side of the
+branch. You can view a branching history with
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git log --graph --oneline --decorate
+    *   363b2f3 Merge branch 'master' of
+    |\          github.com:gambogi/TeamDocument
+    | * A0b7a28 forgot to kill another line
+    | * d0b0039 not a draft :|
+    * | b1129f1 line wrap
+    |/  
+    * a262446 updated pdf
+    * b42f2de added a word on notation
+    ...
+  \end{lstlisting}
+\end{figure}
+
+If the changes in master and your branch overlap, git will prompt you
+to resolve the errors. The offending files will be marked with
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    <<<<<<<<<<
+    one file's changes
+    ==========
+    other file's changes
+    >>>>>>>>>>
+  \end{lstlisting}
+\end{figure}
+
+Resolve the issues then add and commit the file, and you're done.
+
+\section{History}
+
+Git commits are organized into a history: each commit has a parent,
+leading back to the beginning of the repository. You can view the
+history with \texttt{git log}:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git log
+    commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
+    Author: Robert Glossop <robgssp@gmail.com>
+    Date:   Wed Oct 7 22:40:40 2015 -0400
+    
+        split up help
+    
+    commit 9c8d30d2c5b73b63aa6d3401519218d5b38b8379
+    Author: Matt Gambogi <m@gambogi.com>
+    Date:   Wed Oct 7 22:31:27 2015 -0400
+    
+        added a few things
+    
+    commit 7351c1145cb10280101ef13e6225914b5789dd7f
+    Author: Matt Gambogi <m@gambogi.com>
+    Date:   Wed Oct 7 22:09:08 2015 -0400
+    
+        took a book off a hook out of math mode
+
+    ...
+  \end{lstlisting}
+\end{figure}
+
+Notice the long string above each commit: this is a \emph{commit
+  hash}, which is generated from the commit's contents and used by git
+command to uniquely identify commits.
+
+It's sometimes useful to view what changed between commits.
+\texttt{git diff} will show diffs between file revisions, be it your
+working tree, other branches or previous commit. Running \texttt{git
+  diff} with no arguments will show your unstaged changes. \texttt{git
+  diff 9c8d30} will show the changes between commit \texttt{9c8d30}
+and now. \texttt{git diff 9c8d30..abc123} will show all the changes
+from the first commit to the second. Finally, \texttt{git diff
+  abc123...def456} will show the diff from the common ancestor of the
+two to the second. This is useful to show what's changed in your
+branch when the base branch has also advanced, e.g. \texttt{git diff
+  twig...master}.
 
 %multi-user tutorial
 \chapter{Multi-user \texttt{git}}
@@ -300,71 +348,6 @@ Similarly, you can pull other people's changes with
 \begin{figure}[H]
   \begin{lstlisting}
     > git pull origin ANewChange
-  \end{lstlisting}
-\end{figure}
-
-\section{Merging}
-
-Once you've worked on a branch for awhile, you'll want to merge it
-back to the main (master) branch. Switch back to master then run
-\texttt{git merge}:
-
-\begin{figure}[H]
-  \begin{lstlisting}
-    > git checkout master
-    Switched to branch 'master'
-    > git merge ANewChange
-  \end{lstlisting}
-\end{figure}
-
-From here, a few things can happen. If there haven't been any changes
-on master, the merge will simply fast-forward and complete, and the
-history won't show a branch at all.
-
-\begin{figure}[H]
-  \begin{lstlisting}
-    git merge ANewChange
-    Updating ed7c16f..b80a9ee
-    Fast-forward
-     homework1.c | 163 +++++++++++++++++++++++++++++++++++------
-     1 file changed, 141 insertions(+), 22 deletions(-)
-  \end{lstlisting}
-\end{figure}
-
-If there were changes in master but they don't overlap, you won't have
-to resolve merge conflicts but git will prompt you to create a merge
-commit:
-
-TODO EXAMPLE HERE
-
-This commit will be created with two parents, one for each side of the
-branch. You can view a branching history with
-
-\begin{figure}[H]
-  \begin{lstlisting}
-    > git log --graph --oneline --decorate
-    *   363b2f3 Merge branch 'master' of
-    |\          github.com:gambogi/TeamDocument
-    | * A0b7a28 forgot to kill another line
-    | * d0b0039 not a draft :|
-    * | b1129f1 line wrap
-    |/  
-    * a262446 updated pdf
-    * b42f2de added a word on notation
-    ...
-  \end{lstlisting}
-\end{figure}
-
-If the changes in master and your branch overlap, git will prompt you
-to resolve the errors. The offending files will be marked with
-
-\begin{figure}[H]
-  \begin{lstlisting}
-    <<<<<<<<<<
-    one file's changes
-    ==========
-    other file's changes
-    >>>>>>>>>>
   \end{lstlisting}
 \end{figure}
 
