@@ -66,7 +66,25 @@ firstly an excellent single user version control system.
 
 Git tracks changes to collections of files known together as a repository.
 When a change is made to the files in the repository, and a user would like
-to save those changes, they "commit" them for later.
+to save those changes, they "commit" them for later. Since you are a CS student,
+you have access to the CS machines, so you should be able to sign in to any and
+try these examples.
+
+\begin{figure}[H]
+  \caption{ssh into the CS Machines}
+  \begin{lstlisting}
+    > ssh abc1234@glados.cs.rit.edu
+    Password:
+  \end{lstlisting}
+\end{figure}
+
+Once you've logged in, verify that git is installed:
+\begin{figure}[H]
+  \caption{verify}
+  \lstinputlisting{git_help.txt}
+\end{figure}
+
+
 
 
 %multi-user tutorial
@@ -79,6 +97,7 @@ First you would cd to the directory that you want to put the project
 folder into.  For this demo you can just clone it to your home
 directory.  Now type
 \begin{figure}[H]
+  \caption{Example git clone}
   \begin{lstlisting}
     > git clone [url of project]
   \end{lstlisting}
@@ -90,6 +109,7 @@ make a change and push it now you will be making changes to the master
 branch Create a new branch by typing
 
 \begin{figure}[H]
+  \caption{Example git branch}
   \begin{lstlisting}
     > git branch [new_branch_name]
   \end{lstlisting}
@@ -98,6 +118,7 @@ branch Create a new branch by typing
 You can verify that the branch was created with
 
 \begin{figure}[H]
+  \caption{Example git branch listing}
   \begin{lstlisting}
     > git branch
   \end{lstlisting}
@@ -106,6 +127,7 @@ You can verify that the branch was created with
 And switch to this branch with
 
 \begin{figure}[H]
+  \caption{Example git checkout}
   \begin{lstlisting}
     > git checkout [new_branch_name]
   \end{lstlisting}
@@ -114,6 +136,7 @@ And switch to this branch with
 Make a change to a file, add it, and commit it.
 
 \begin{figure}[H]
+  \caption{Example git commit}
   \begin{lstlisting}
     > git add [filename]
     > git commit -m "commit message"
@@ -124,6 +147,7 @@ You just committed the changes to your local branch.  You can push
 this branch to the repository with
 
 \begin{figure}[H]
+  \caption{Example git push}
   \begin{lstlisting}
     > git push -u origin [new_branch_name]
   \end{lstlisting}
