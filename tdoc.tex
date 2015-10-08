@@ -30,34 +30,30 @@ people.  Version control software keeps track of all the changes that
 are made to files so you can view previous versions and roll back to
 them if necessary.  A distributed version control system allows team
 members to all have local versions of the project files while keeping
-them in sync with the rest of the team. We will introduce the basics
-of using git in a multi-person project: how to track your work and
-sync it with other team members. We'll start with the basics of how to
-create a repository and commit your own work into it, then move on to
-merging, branches and other issues involved with a multi-person git
-project. This document is intended for computer science students who
-have little or no experience using git. We assume you know the basics
-of the command line, and have access to the Computer Science machines
-or another machine with git installed.
+them in sync with the rest of the team.
+
+We will introduce the basics of using git in a multi-person project:
+how to track your work and sync it with other team members. We'll
+start with the basics of how to create a repository and commit your
+own work into it, then move on to merging, branches and other issues
+involved with a multi-person git project. This document is intended
+for computer science students who have little or no experience using
+git. We assume you know the basics of the command line, and have
+access to the Computer Science machines or another machine with git
+installed.
 
 \section{A Note on Notation}
 Code snippets and commands will be formatted in a \texttt{monospace} font or in
 a separate figure. Placeholders are indicated with \texttt{[square
     braces]}. Commands will have a \texttt{\$} prefix, while output
 will have nothing.
-\begin{figure}[h]
+\begin{figure}[H]
   \caption{Example Command Snippet}
   \begin{lstlisting}
     > example_command
     Success!
   \end{lstlisting}
 \end{figure}
-
-\section{Procedures}
-from the handout: "A procedures section must follow the Intro. The
-procedures section will consist of a series of sub-procedure sections,
-labeled with a short description of the sub-procedure to follow." --
-I'm not sure what this is talking about...
 
 \chapter{Single User \texttt{git}}
 Git is well known as a distributed version control system but it is
@@ -88,6 +84,78 @@ Once you've logged in, verify that git is installed:
   \lstinputlisting{git_help_2.txt}
 \end{figure}
 
+\section{Committing}
+
+Git is used in the context of a \emph{repository}, a collection of
+files you want to track. To create a repository, go to the directory
+with your files and run
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git init
+    Initialized empty git repository in
+    /home/robert/profcomm/team-document/.git
+  \end{lstlisting}
+\end{figure}
+
+The repository is ready to use, but it doesn't have any files in it
+yet. To add files, run
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git add homework1.c
+  \end{lstlisting}
+\end{figure}
+
+TODO GIT STATUS MENTION
+
+Your file isn't tracked yet: it's in the \emph{index}, git's staging
+area. From here, \texttt{git commit} will package all the files in the
+index into a commit.
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git commit -m "Fixed diagonal line drawing"
+    [master cb8a72a] Fixed diagonal line drawing
+     1 file changed, 95 insertions(+), 22 deletions(-)
+  \end{lstlisting}
+\end{figure}
+
+\section{History}
+
+Git commits are organized into a history: each commit has a parent,
+leading back to the beginning of the repository. You can view the
+history with \texttt{git log}:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git log
+    commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
+    Author: Robert Glossop <robgssp@gmail.com>
+    Date:   Wed Oct 7 22:40:40 2015 -0400
+    
+        split up help
+    
+    commit 9c8d30d2c5b73b63aa6d3401519218d5b38b8379
+    Author: Matt Gambogi <m@gambogi.com>
+    Date:   Wed Oct 7 22:31:27 2015 -0400
+    
+        added a few things
+    
+    commit 7351c1145cb10280101ef13e6225914b5789dd7f
+    Author: Matt Gambogi <m@gambogi.com>
+    Date:   Wed Oct 7 22:09:08 2015 -0400
+    
+        took a book off a hook out of math mode
+
+    ...
+  \end{lstlisting}
+\end{figure}
+
+Notice the long string above each commit: this is a \emph{commit
+  hash}, which is generated from the commit's contents and used by git
+command to uniquely identify commits.
+
 %multi-user tutorial
 \chapter{Multi-user}
 In this section you will be doing a demo of how to get code from
@@ -104,7 +172,6 @@ directory.  Now type
   \end{lstlisting}
 \end{figure}
 
-
 to download all the files of that project to your computer.  If you
 make a change and push it now you will be making changes to the master
 branch Create a new branch by typing
@@ -112,7 +179,7 @@ branch Create a new branch by typing
 \begin{figure}[H]
   \caption{Example git branch}
   \begin{lstlisting}
-    > git branch [new_branch_name]
+    > git branch ANewChange
   \end{lstlisting}
 \end{figure}
 
@@ -122,6 +189,8 @@ You can verify that the branch was created with
   \caption{Example git branch listing}
   \begin{lstlisting}
     > git branch
+      ANewChange
+    * master
   \end{lstlisting}
 \end{figure}
 
@@ -130,7 +199,7 @@ And switch to this branch with
 \begin{figure}[H]
   \caption{Example git checkout}
   \begin{lstlisting}
-    > git checkout [new_branch_name]
+    > git checkout ANewChange
   \end{lstlisting}
 \end{figure}
 
@@ -139,8 +208,8 @@ Make a change to a file, add it, and commit it.
 \begin{figure}[H]
   \caption{Example git commit}
   \begin{lstlisting}
-    > git add [filename]
-    > git commit -m "commit message"
+    > git add codezone.c
+    > git commit -m "Code Zone expanded"
     \end{lstlisting}
 \end{figure}
 
@@ -150,7 +219,83 @@ this branch to the repository with
 \begin{figure}[H]
   \caption{Example git push}
   \begin{lstlisting}
-    > git push -u origin [new_branch_name]
+    > git push -u origin ANewChange
+  \end{lstlisting}
+\end{figure}
+
+The -u option allows you to push to others' currently checked-out
+branches. Use it with care.
+
+Similarly, you can pull other people's changes with
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git pull origin ANewChange
+  \end{lstlisting}
+\end{figure}
+
+\section{Merging}
+
+Once you've worked on a branch for awhile, you'll want to merge it
+back to the main (master) branch. Switch back to master then run
+\texttt{git merge}:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git checkout master
+    Switched to branch 'master'
+    > git merge ANewChange
+  \end{lstlisting}
+\end{figure}
+
+From here, a few things can happen. If there haven't been any changes
+on master, the merge will simply fast-forward and complete, and the
+history won't show a branch at all.
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    git merge ANewChange
+    Updating ed7c16f..b80a9ee
+    Fast-forward
+     homework1.c | 163 +++++++++++++++++++++++++++++++++++------
+     1 file changed, 141 insertions(+), 22 deletions(-)
+  \end{lstlisting}
+\end{figure}
+
+If there were changes in master but they don't overlap, you won't have
+to resolve merge conflicts but git will prompt you to create a merge
+commit:
+
+TODO EXAMPLE HERE
+
+This commit will be created with two parents, one for each side of the
+branch. You can view a branching history with
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git log --graph --oneline --decorate
+    *   363b2f3 Merge branch 'master' of
+    |\          github.com:gambogi/TeamDocument
+    | * A0b7a28 forgot to kill another line
+    | * d0b0039 not a draft :|
+    * | b1129f1 line wrap
+    |/  
+    * a262446 updated pdf
+    * b42f2de added a word on notation
+    ...
+  \end{lstlisting}
+\end{figure}
+
+If the changes in master and your branch overlap, git will prompt you
+to resolve the errors. The offending files will be marked with
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    >>>>>>>>>>
+    one file's changes
+    ==========
+    other file's changes
+    <<<<<<<<<<
   \end{lstlisting}
 \end{figure}
 
@@ -161,3 +306,5 @@ this branch to the repository with
 
 \end{thebibliography}
 \end{document}
+
+
