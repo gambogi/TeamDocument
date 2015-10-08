@@ -61,11 +61,13 @@ I'm not sure what this is talking about...
 
 \chapter{Single User \texttt{git}}
 Git is well known as a distributed version control system but it is
-firstly an excellent single user version control system.
-
+firstly an excellent single user version control system. 
 Git tracks changes to collections of files known together as a repository.
 When a change is made to the files in the repository, and a user would like
-to save those changes, they "commit" them for later. Since you are a CS student,
+to save those changes, they "commit" them for later.
+
+\section{Trying git}
+Since you are a CS student,
 you have access to the CS machines, so you should be able to sign in to any and
 try these examples.
 
@@ -79,14 +81,18 @@ try these examples.
 
 Once you've logged in, verify that git is installed:
 
+\begin{figure}[H]\lstinputlisting{git_help.txt}\end{figure}
+\begin{figure}[H]\caption{Verify installation}\lstinputlisting{git_help_2.txt}\end{figure}
+
+Let's create a repo. First, create a directory:
 \begin{figure}[H]
-  \lstinputlisting{git_help.txt}
+  \caption{ssh into the CS Machines}
+  \begin{lstlisting}
+    > mkdir example_git
+  \end{lstlisting}
 \end{figure}
 
-\begin{figure}[H]
-  \caption{verify}
-  \lstinputlisting{git_help_2.txt}
-\end{figure}
+
 
 %multi-user tutorial
 \chapter{Multi-user}
