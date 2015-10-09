@@ -24,14 +24,18 @@
 % restart page numbering again for main body
 \clearpage \pagenumbering{arabic}
 \section{Intro}
+
+
+
+
 This tutorial will introduce git.  Git is a version control system,
 used both for individual work and projects distributed among multiple
 people.  Version control software keeps track of all the changes that
 are made to files so you can view previous versions and roll back to
 them if necessary.  A distributed version control system allows team
 members to all have local versions of the project files while keeping
-them in sync with the rest of the team.
-
+them in sync with the rest of the team.\\
+\newline
 We will introduce the basics of using git in a multi-person project:
 how to track your work and sync it with other team members. We'll
 start with the basics of how to create a repository and commit your
@@ -341,6 +345,7 @@ There's an example repository hosted on the CS machines. To clone it:
   \caption{Example git clone}
   \begin{lstlisting}
       # on your machine
+    > cd
     > git clone abc1234@glados.cs.rit.edu:~rig1635/test-repo
     Cloning into 'test-repo'...
     remote: Counting objects: 96, done.

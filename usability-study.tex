@@ -36,30 +36,30 @@ to successfully execute are:
 \end{itemize}
 In order to gauge the effectiveness of our instructions we will make
 sure our subjects can complete these tasks without any errors. If they
-end up having problems we will reword the specific example or add more
-instructions for what to do if something goes wrong.
+end up having problems or questions about a specific instruction
+we will reword the example or add more instructions for what to do if something goes wrong.\\
 
 
-Feedback
+Feedback:
+
+
+One thing we didn't think of is that if the person hasn't used git before they won't
+have certain things like a username and email set, so we added an example of git config for
+username and email. One of our subjects wasn't getting the same output as the example 
+for merging two branches. This was because they hadn't made any changes in the new branch,
+so we made it more clear that they need to change a file and commit it to the new branch 
+before merging. In our multi-user section when a user was trying to clone a repository that we 
+set up in one of our CS accounts they were trying to sign in with the example account that we gave
+(abc1234) so we made it clear to replace this with their actual username. Also in the multi-user section - 
+one subject cloned the example repo inside the directory they were using for the first example, creating
+a nested git repo, so we added the instruction to cd back to their home directory first. Someone
+wanted to know how they could delete a branch after creating it, so we added an example for that.
+
 \begin{itemize}
-\item initial commit message looked different -- give instructions for git
-config
-
-\item merge twig to branch - make it more clear to make changes to README
-and add/commit
-
-\item they only were reading the text in the code boxes -- make it so
-  everything necessary to complete tutorial is in code boxes
-  
 \item add git tree to the introduction
 
-\item abc1234?
-
 \item what’s a tag?
-
-\item multi-user -- make it clear to cd to a different directory
-
-\item explain how to delete branches
 \end{itemize}
+
 
 \end{document}
