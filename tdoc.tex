@@ -191,7 +191,16 @@ If there were changes in master but they don't overlap, you won't have
 to resolve merge conflicts but git will prompt you to create a merge
 commit:
 
-TODO EXAMPLE HERE
+\begin{figure}[H]
+  \begin{lstlisting}
+    Merge branch 'twig' into master
+    
+    # It looks like you may be committing a merge.
+    # If this is not correct, please remove the file
+    #  .git/MERGE_HEAD
+    # and try again.
+  \end{lstlisting}
+\end{figure}
 
 This commit will be created with two parents, one for each side of the
 branch. You can view a branching history with
@@ -275,27 +284,35 @@ branch when the base branch has also advanced, e.g. \texttt{git diff
 
 % multi-user tutorial
 \chapter{Multi-user \texttt{git}}
+
 In this section you will be doing a demo of how to get code from
 someone else's project and make changes to it on git. If you are
 working on a project with a group or you want to make a contribution
 to an open source project you may find some of these commands useful.
 First you would cd to the directory that you want to put the project
 folder into.  For this demo you can just clone it to your home
-directory.  Now type
+directory.
+
+There's an example repository hosted on the CS machines. To clone it:
+
 \begin{figure}[H]
   \caption{Example git clone}
   \begin{lstlisting}
-    > git clone https://github.com/gambogi/TeamDocument.git Cloning into 'TeamDocument'...
+      # on your machine
+    > git clone abc1234@glados.cs.rit.edu:~rig1635/test-repo
     remote: Counting objects: 96, done.
     remote: Total 96 (delta 42), reused 0 (delta 0), done.
     Unpacking objects: 100% (96/96), done.
     Checking connectivity... done.
+
+      # on a CS machine
+    > git clone ~rig1635/test-repo
   \end{lstlisting}
 \end{figure}
 
-to download all the files of that project to your computer.  If you
-make a change and push it now you will be making changes to the master
-branch.
+From here you can work on your local repository; commands like
+\texttt{commit} and \texttt{branch} don't touch the remote (referred
+to as ``origin''.
 
 \begin{figure}[H]
   \caption{Example git branch}
