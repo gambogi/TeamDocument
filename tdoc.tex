@@ -97,11 +97,23 @@ Great! Let's initalize a git repository in this folder:
   \end{lstlisting}
 \end{figure}
 
+Git records which person made which commit, so it's useful to have git
+configured with your name and email:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    git config --global user.name "Alex Bro Captain"
+    git config --global user.email abc1234@rit.edu
+  \end{lstlisting}
+\end{figure}
+
 Now let's create a file and commit it:
+
 \begin{figure}[H]
   \caption{Making your first commit}
   \begin{lstlisting}
-    > touch README
+    > nano README
+    ... editing ...
     > git add README
     > git commit -m "Initial commit"
     [master (root-commit) fffffff] Initial commit
@@ -140,6 +152,7 @@ To see a list of branches try typing
  \end{figure}
 
 Let's create a branch:
+
 \begin{figure}[H]
   \caption{Example branch creation}
   \begin{lstlisting}
@@ -316,62 +329,51 @@ From here you can work on your local repository; commands like
 to as ``origin''.
 
 \begin{figure}[H]
-  \caption{Example git branch}
-  \begin{lstlisting}
-    > git branch ANewChange
-  \end{lstlisting}
-\end{figure}
-
-You can verify that the branch was created with
-
-\begin{figure}[H]
-  \caption{Example git branch listing}
-  \begin{lstlisting}
-    > git branch
-      ANewChange
-    * master
-  \end{lstlisting}
-\end{figure}
-
-And switch to this branch with
-
-\begin{figure}[H]
-  \caption{Example git checkout}
-  \begin{lstlisting}
-    > git checkout ANewChange
-  \end{lstlisting}
-\end{figure}
-
-Make a change to a file, add it, and commit it.
-
-\begin{figure}[H]
   \caption{Example git commit}
   \begin{lstlisting}
     > git add codezone.c
     > git commit -m "Code Zone expanded"
-    \end{lstlisting}
-\end{figure}
-
-You just committed the changes to your local branch.  You can push
-this branch to the repository with
-
-\begin{figure}[H]
-  \caption{Example git push}
-  \begin{lstlisting}
-    > git push -u origin ANewChange
   \end{lstlisting}
 \end{figure}
 
-The -u option allows you to push to others' currently checked-out
-branches. Use it with care.
+Now that you have local changes, you can push them back to the server:
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git push
+    Counting objects: 5, done.
+    Writing objects: 100% (3/3), 266 bytes | 0 bytes/s, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+    To /home/stu5/s0/rig1635/test-repo
+       c7f2850..15cea95  master -> master
+  \end{lstlisting}
+\end{figure}
 
 Similarly, you can pull other people's changes with
 
 \begin{figure}[H]
   \begin{lstlisting}
-    > git pull origin ANewChange
+    > git pull
   \end{lstlisting}
 \end{figure}
+
+\texttt{git pull} and \texttt{push} can also take arguments for
+\texttt{remote} (which server) and \texttt{branch} (which remote
+branch):
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    > git checkout DoubleCompile
+    > git push --set-upstream origin DoubleCompile
+  \end{lstlisting}
+\end{figure}
+
+\texttt{--set-upstream} configures things so that in the future, a
+\texttt{git push} from this branch will default to the given server
+and remote-branch.
+
+Note that \texttt{git pull} basically performs a merge between your
+branch and the remote, so you may need to resolve conflicts as explained.
 
 \begin{thebibliography}{9}
 
