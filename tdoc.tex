@@ -101,6 +101,7 @@ Git records which person made which commit, so it's useful to have git
 configured with your name and email:
 
 \begin{figure}[H]
+  \caption{Set name and email}
   \begin{lstlisting}
     git config --global user.name "Alex Bro Captain"
     git config --global user.email abc1234@rit.edu
@@ -108,6 +109,7 @@ configured with your name and email:
 \end{figure}
 
 Let's check the status of the repository:
+
 \begin{figure}[H]
   \caption{Checking git status}
   \begin{lstlisting}
@@ -189,6 +191,7 @@ back to the master branch. Switch back to master then run
 \texttt{git merge}:
 
 \begin{figure}[H]
+  \caption{Performing a merge}
   \begin{lstlisting}
     > git checkout master
     Switched to branch 'master'
@@ -201,6 +204,7 @@ on master, the merge will simply fast-forward and complete, and the
 history won't show a branch at all.
 
 \begin{figure}[H]
+  \caption{Fast-forward merge}
   \begin{lstlisting}
     > git merge twig
     Updating ed7c16f..b80a9ee
@@ -215,6 +219,7 @@ to resolve merge conflicts but git will prompt you to create a merge
 commit:
 
 \begin{figure}[H]
+  \caption{Non-conflicting merge}
   \begin{lstlisting}
     Merge branch 'twig' into master
     
@@ -229,6 +234,7 @@ This commit will be created with two parents, one for each side of the
 branch. You can view a branching history with
 
 \begin{figure}[H]
+  \caption{Conflicting merge}
   \begin{lstlisting}
     > git log --graph --oneline --decorate
     *   363b2f3 Merge branch 'master' of
@@ -247,6 +253,7 @@ If the changes in master and your branch overlap, git will prompt you
 to resolve the errors. The offending files will be marked with
 
 \begin{figure}[H]
+  \caption{A merge conflict}
   \begin{lstlisting}
     <<<<<<<<<<
     one file's changes
@@ -276,6 +283,7 @@ leading back to the beginning of the repository. You can view the
 history with \texttt{git log}:
 
 \begin{figure}[H]
+  \caption{Example git log}
   \begin{lstlisting}
     > git log
     commit ed7c16f565aa0cdd09ca02f6fd653d8704b4d93b
@@ -360,6 +368,7 @@ to as ``origin''.
 Now that you have local changes, you can push them back to the server:
 
 \begin{figure}[H]
+  \caption{Example git push}
   \begin{lstlisting}
     > git push
     Counting objects: 5, done.
@@ -373,6 +382,7 @@ Now that you have local changes, you can push them back to the server:
 Similarly, you can pull other people's changes with
 
 \begin{figure}[H]
+  \caption{Example git pull}
   \begin{lstlisting}
     > git pull
   \end{lstlisting}
@@ -383,6 +393,7 @@ Similarly, you can pull other people's changes with
 branch):
 
 \begin{figure}[H]
+  \caption{Example git push}
   \begin{lstlisting}
     > git checkout DoubleCompile
     > git push --set-upstream origin DoubleCompile
