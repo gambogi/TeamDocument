@@ -1,0 +1,23 @@
+﻿Usability Study
+Matt Carvalho, Matt Gambogi, Rob Glossop
+
+
+Test Plan:
+        We are going to test our document by giving it to freshmen computer science students who have no experience with git. We will have them ssh into their CS accounts so we can be sure they all have access to git. 
+        Some of the features in our document that our subjects should be able to successfully execute are:
+* Initializing a git repository.
+* Making the initial commit to the repo.
+* Creating a new branch and merging that branch with master (both when the branch has merging problems and when it doesn’t).
+* Cloning our example repository and making changes to it.
+In order to gauge the effectiveness of our instructions we will make sure our subjects can complete these tasks without any errors. If they end up having problems we will reword the specific example or add more instructions for what to do if something goes wrong.
+
+
+Feedback:
+* initial commit message looked different -- give instructions for git config 
+* merge twig to branch - make it more clear to make changes to README and add/commit
+* they only were reading the text in the code boxes -- make it so everything necessary to complete tutorial is in code boxes
+* add git tree to the introduction
+* abc1234…
+* what’s a tag?
+* multi-user -- make it clear to cd to a different directory
+* explain how to delete branches
