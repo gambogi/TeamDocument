@@ -65,7 +65,7 @@ to save those changes, they "commit" them for later.
 \section{Trying git}
 Since you are a CS student,
 you have access to the CS machines, so you should be able to sign in to any and
-try these examples.
+try these examples. (Note: \texttt{abc1234} is just a generic username, use your own)
 
 \begin{figure}[H]
   \caption{ssh into the CS Machines}
@@ -107,6 +107,16 @@ configured with your name and email:
   \end{lstlisting}
 \end{figure}
 
+Let's check the status of the repository:
+\begin{figure}[H]
+  \caption{Checking git status}
+  \begin{lstlisting}
+    > cd example_git
+    > git init
+    Initialized empty Git repository in /path/to/example_git/.git
+  \end{lstlisting}
+\end{figure}
+
 Now let's create a file and commit it:
 
 \begin{figure}[H]
@@ -130,7 +140,7 @@ The output of \texttt{git commit} also bears looking
 at. \texttt{master} refers to the name of the branch we just committed
 to. \texttt{(root-commit)} indicates this was the first commit in the
 repository. \texttt{ffffff} (or similarly positioned hex value) is the
-hash of the ppfiles in the repository. \texttt{Initial commit} is the
+hash of the files in the repository. \texttt{Initial commit} is the
 title of your commit message. These messages should be short, and
 capture the essence of what changed between this commit and the
 last. \texttt{1 file changed, 0 insertions(+), 0 deletions(-)} is just
@@ -246,7 +256,18 @@ to resolve the errors. The offending files will be marked with
   \end{lstlisting}
 \end{figure}
 
-Resolve the issues then add and commit the file, and you're done.
+Resolve the issues, by removing the \texttt{>>>>>>>>>}
+and \texttt{>>>>>>>>>>}, and changing the document as you feel appropriate.
+Now add and commit the file, and you're done.
+
+We're done with the \texttt{twig} branch, so let's delete it:
+\begin{figure}[H]
+  \caption{Removing a branch}
+  \begin{lstlisting}
+  > git branch -d twig
+  Deleted branch twig (was f9d6fd4).
+  \end{lstlisting}
+\end{figure}
 
 \section{History}
 
@@ -373,7 +394,8 @@ branch):
 and remote-branch.
 
 Note that \texttt{git pull} basically performs a merge between your
-branch and the remote, so you may need to resolve conflicts as explained.
+branch and the remote, so you may need to resolve conflicts as
+explained.
 
 \begin{thebibliography}{9}
 
