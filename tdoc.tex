@@ -97,6 +97,16 @@ Great! Let's initalize a git repository in this folder:
   \end{lstlisting}
 \end{figure}
 
+Let's check the status of the repository:
+\begin{figure}[H]
+  \caption{Checking git status}
+  \begin{lstlisting}
+    > cd example_git
+    > git init
+    Initialized empty Git repository in /path/to/example_git/.git
+  \end{lstlisting}
+\end{figure}
+
 Now let's create a file and commit it:
 \begin{figure}[H]
   \caption{Making your first commit}
@@ -233,7 +243,18 @@ to resolve the errors. The offending files will be marked with
   \end{lstlisting}
 \end{figure}
 
-Resolve the issues then add and commit the file, and you're done.
+Resolve the issues, by removing the \texttt{>>>>>>>>>}
+and \texttt{>>>>>>>>>>}, and changing the document as you feel appropriate.
+Now add and commit the file, and you're done.
+
+We're done with the \texttt{twig} branch, so let's delete it:
+\begin{figure}[H]
+  \caption{Removing a branch}
+  \begin{lstlisting}
+  > git branch -d twig
+  Deleted branch twig (was f9d6fd4).
+  \end{lstlisting}
+\end{figure}
 
 \section{History}
 
