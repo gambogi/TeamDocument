@@ -179,7 +179,7 @@ history won't show a branch at all.
 
 \begin{figure}[H]
   \begin{lstlisting}
-    git merge twig
+    > git merge twig
     Updating ed7c16f..b80a9ee
     Fast-forward
      README | 163 +++++++++++++++++++++++++++++++++++------
@@ -273,7 +273,7 @@ two to the second. This is useful to show what's changed in your
 branch when the base branch has also advanced, e.g. \texttt{git diff
   twig...master}.
 
-%multi-user tutorial
+% multi-user tutorial
 \chapter{Multi-user \texttt{git}}
 In this section you will be doing a demo of how to get code from
 someone else's project and make changes to it on git. If you are
@@ -285,13 +285,17 @@ directory.  Now type
 \begin{figure}[H]
   \caption{Example git clone}
   \begin{lstlisting}
-    > git clone [url of project]
+    > git clone https://github.com/gambogi/TeamDocument.git Cloning into 'TeamDocument'...
+    remote: Counting objects: 96, done.
+    remote: Total 96 (delta 42), reused 0 (delta 0), done.
+    Unpacking objects: 100% (96/96), done.
+    Checking connectivity... done.
   \end{lstlisting}
 \end{figure}
 
 to download all the files of that project to your computer.  If you
 make a change and push it now you will be making changes to the master
-branch Create a new branch by typing
+branch.
 
 \begin{figure}[H]
   \caption{Example git branch}
@@ -358,5 +362,3 @@ Similarly, you can pull other people's changes with
 
 \end{thebibliography}
 \end{document}
-
-
